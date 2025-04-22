@@ -41,15 +41,15 @@
             z-index: 9999;
         }
 
-        
+
         .plugin-controls {
-            position: fixed; 
+            position: fixed;
             top: 20px;
             left: 50%;
             transform: translateX(-50%);
             display: flex;
             gap: 10px;
-            z-index: 10001; 
+            z-index: 10001;
             pointer-events: auto;
         }
 
@@ -151,17 +151,31 @@
         });
 
         closeBtn.addEventListener('click', () => {
+          
+                exitFullscreen();
+               
+           
             plugin.style.display = 'none';
             pluginImg.src = '';
         });
+
+       
+
         layer.addEventListener('click', (e) => {
 
             if (e.target === layer) {
+                exitFullscreen();
                 plugin.style.display = 'none';
                 pluginImg.src = '';
             }
         })
-
+        function exitFullscreen() { 
+            if (document.fullscreenElement) {
+                document.exitFullscreen(); 
+            } else if (document.webkitFullscreenElement) {
+                document.webkitExitFullscreen();
+            }
+        }
 
         document.getElementById('zoom-in-btn').onclick = () => {
             scale += 0.1;
@@ -227,7 +241,7 @@
             }
         };
 
-/************ MILOU Med **********************/
+        /************ MILOU Med **********************/
     </script>
 </body>
 
